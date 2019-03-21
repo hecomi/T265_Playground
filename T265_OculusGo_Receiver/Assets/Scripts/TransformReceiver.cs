@@ -11,8 +11,7 @@ public class TransformReceiver : MonoBehaviour
     [SerializeField]
     Transform camera;
 
-    Vector3 latestT265Pos = Vector3.zero;
-    Quaternion latestT265Rot = Quaternion.identity;
+    Vector3 t265Pos = Vector3.zero;
     Quaternion calibRot = Quaternion.identity;
 
     void Start()
@@ -25,18 +24,15 @@ public class TransformReceiver : MonoBehaviour
         if (message.address == "/Pos")
         {
             var v = message.values;
-            latestT265Pos = new Vector3((float)v[0], (float)v[1], (float)v[2]);
-        }
-        else if (message.address == "/Rot")
-        {
-            var v = message.values;
-            latestT265Rot = new Quaternion((float)v[0], (float)v[1], (float)v[2], (float)v[3]);
+            t265Pos = new Vector3((float)v[0], (float)v[1], (float)v[2]);
         }
         else if (message.address == "/Reset")
         {
-            var yawT265 = latestT265Rot.eulerAngles.y;
-            var yawGo = camera.localEulerAngles.y;
-            calibRot = Quaternion.Euler(0f, yawGo - yawT265, 0f);
+            var v = message.values;
+            var t265Rot = new Quaternion((float)v[0], (float)v[1], (float)v[2], (float)v[3]);
+            var t265Yaw = t265Rot.eulerAngles.y;
+            var goYaw = camera.localEulerAngles.y;
+            calibRot = Quaternion.Euler(0f, goYaw - t265Yaw, 0f);
         }
 
         UpdateTransform();
@@ -44,6 +40,6 @@ public class TransformReceiver : MonoBehaviour
 
     void UpdateTransform()
     {
-        target.transform.position = calibRot * latestT265Pos;
+        target.transform.position = calibRot * t265Pos;
     }
 }

@@ -11,13 +11,12 @@ public class TransformSender : MonoBehaviour
     void Update()
     {
         var p = target.position;
-        var r = target.rotation;
         oscClient.Send("/Pos", p.x, p.y, p.z);
-        oscClient.Send("/Rot", r.x, r.y, r.z, r.w);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            oscClient.Send("/Reset");
+            var r = target.rotation;
+            oscClient.Send("/Reset", r.x, r.y, r.z, r.w);
         }
     }
 }
