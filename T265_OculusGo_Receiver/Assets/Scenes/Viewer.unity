@@ -722,6 +722,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oscServer: {fileID: 1809288527}
   target: {fileID: 994379694}
+  camera: {fileID: 534669905}
+  text: {fileID: 712516264}
 --- !u!114 &1809288527
 MonoBehaviour:
   m_ObjectHideFlags: 0

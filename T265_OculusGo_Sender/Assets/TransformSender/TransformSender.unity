@@ -504,7 +504,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oscClient: {fileID: 1277830617}
   target: {fileID: 1097923856}
-  offset: {x: 0, y: 0, z: 0}
 --- !u!114 &1277830617
 MonoBehaviour:
   m_ObjectHideFlags: 0
