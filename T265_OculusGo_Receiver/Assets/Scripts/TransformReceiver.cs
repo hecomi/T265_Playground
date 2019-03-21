@@ -28,9 +28,7 @@ public class TransformReceiver : MonoBehaviour
         }
         else if (message.address == "/Reset")
         {
-            var v = message.values;
-            var t265Rot = new Quaternion((float)v[0], (float)v[1], (float)v[2], (float)v[3]);
-            var t265Yaw = t265Rot.eulerAngles.y;
+            var t265Yaw = (float)message.values[0];
             var goYaw = camera.localEulerAngles.y;
             calibRot = Quaternion.Euler(0f, goYaw - t265Yaw, 0f);
         }

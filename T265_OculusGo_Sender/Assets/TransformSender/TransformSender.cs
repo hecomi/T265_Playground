@@ -15,8 +15,7 @@ public class TransformSender : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            var r = target.rotation;
-            oscClient.Send("/Reset", r.x, r.y, r.z, r.w);
+            oscClient.Send("/Reset", target.eulerAngles.y);
         }
     }
 }
